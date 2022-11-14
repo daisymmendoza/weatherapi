@@ -20,20 +20,28 @@ function LoadWeather() {
     .then ((data) => setCurrentWeather(data))
   }, [url]);
   
-  const submitHandler = () => {
+  const submitSearch = () => {
     setSearch(getWeather);
+  };
+
+  const submitClear = () => {
+    setSearch('');
+    setGetWeather('');
   };
 
   return (
     <div className="weatherSection">
-      <div className="">
+      <div>
         <label>City: </label>
         <input
           type="text"
           onChange={(event) => setGetWeather(event.target.value)}
           value={getWeather}
         />
-        <button onClick={submitHandler}>Search</button>
+        <div className='btns'>
+          <button onClick={submitSearch}>Search</button>
+          <button onClick={submitClear}>Clear</button>
+        </div>
       </div>
       <div className="weather">
         {currentWeather.main ? (
